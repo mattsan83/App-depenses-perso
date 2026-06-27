@@ -7,9 +7,12 @@ use App\Models\Expense;
 use App\Http\Resources\ExpenseResource;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ExpenseController extends Controller
 {
+    use AuthorizesRequests;
+    
     public function index(Request $request)
     {
         $expenses = Expense::with('category')->where('user_id', auth()->id());

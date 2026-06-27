@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Resources\IncomeResource;
 use App\Http\Requests\StoreIncomeRequest;
 use App\Http\Requests\UpdateIncomeRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class IncomeController extends Controller
 {
+    use AuthorizesRequests;
     public function index(Request $request)
     {
         $incomes = Income::with('category')->where('user_id', auth()->id());
